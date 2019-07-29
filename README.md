@@ -9,6 +9,6 @@ Image provides nginx, php-fpm phantomjs binary and render.js.
 
 After cloning the repository enter the directory of repository.
 
-    build -t bsaip .
+    docker build -t bsaip .
     docker container create --name=bsaip -p {$YOURPORT}:80 bsaip
     docker container start bsaip
