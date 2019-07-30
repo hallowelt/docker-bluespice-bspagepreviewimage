@@ -7,13 +7,12 @@ RUN sed -i 's/archive.ubuntu.com/de.archive.ubuntu.com/g' /etc/apt/sources.list
 
 RUN apt-get update; \
 	apt-get -y dist-upgrade; \
-    apt-get -y --no-install-recommends install nginx php-fpm wget; \
+    apt-get -y --no-install-recommends install nginx git php-fpm wget ca-certificates; \
 	mkdir /opt/phantomjs; \
 	mkdir /run/php; \
-	rm /etc/nginx/sites-enabled/default
-
-COPY ./includes/app/wrapper.php /opt/articlecapture/
-COPY ./includes/app/render.js /opt/phantomjs/
+	rm /etc/nginx/sites-enabled/default; \
+	mkdir /opt/articlecapture
+RUN cd /opt/articlecapture;git clone --depth 1 "https://github.com/hallowelt/misc-BSPagePreviewImage.git" .
 COPY ./includes/docker/init.sh /opt/docker/init.sh
 COPY ./includes/configs/nginx/default.conf /etc/nginx/sites-enabled/
 COPY ./includes/configs/nginx/nginx.conf /etc/nginx/nginx.conf
