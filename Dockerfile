@@ -20,7 +20,7 @@ COPY ./includes/configs/php-fpm/www.conf /etc/php/7.2/fpm/pool.d/
 RUN cd /tmp; \
 	wget --no-check-certificate https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2; \
 	tar xjf phantomjs-2.1.1-linux-x86_64.tar.bz2; \
-	mv /tmp/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /opt/phantomjs/; \
+	mv /tmp/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin/; \
 	rm -rf /tmp/phantomjs-2.1.1-linux-x86_64; \
 	rm -rf /tmp/phantomjs-2.1.1-linux-x86_64.tar.bz2
 
