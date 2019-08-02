@@ -7,12 +7,12 @@ RUN sed -i 's/archive.ubuntu.com/de.archive.ubuntu.com/g' /etc/apt/sources.list
 
 RUN apt-get update; \
 	apt-get -y dist-upgrade; \
-    apt-get -y --no-install-recommends install nginx git php-fpm wget ca-certificates; \
+    apt-get -y --no-install-recommends install nginx git php-fpm php-dom php-xml composer unzip wget ca-certificates; \
 	mkdir /opt/phantomjs; \
 	mkdir /run/php; \
 	rm /etc/nginx/sites-enabled/default; \
 	mkdir /opt/articlecapture
-RUN cd /opt/articlecapture;git clone --depth 1 "https://github.com/hallowelt/misc-BSPagePreviewImage.git" .
+RUN cd /opt/articlecapture;composer create-project -n hallowelt/webservice-bspagepreviewimage --stability dev --repository https://packages.bluespice.com/ .
 COPY ./includes/docker/init.sh /opt/docker/init.sh
 COPY ./includes/configs/nginx/default.conf /etc/nginx/sites-enabled/
 COPY ./includes/configs/nginx/nginx.conf /etc/nginx/nginx.conf
